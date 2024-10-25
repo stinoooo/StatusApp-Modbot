@@ -17,7 +17,7 @@ import BetterButtonBuilder from '../../embeds/BetterButtonBuilder.js';
 export const DISCORD_INVITE_LINK = 'https://discord.gg/statusgame';
 export const PRIVACY_POLICY = 'https://peach-darb-72.tiiny.site';
 
-export const CLIENT_ID = '790967448111153153';
+export const CLIENT_ID = '1299263536740044821';
 export const SCOPES = ['bot', 'applications.commands'];
 export const PERMISSIONS = new PermissionsBitField()
     .add(PermissionFlagsBits.ViewChannel)
@@ -29,12 +29,10 @@ export const PERMISSIONS = new PermissionsBitField()
     .add(PermissionFlagsBits.ManageMessages)
     .add(PermissionFlagsBits.SendMessages)
     .add(PermissionFlagsBits.ViewAuditLog);
+export const INVITE_LINK = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&scope=${SCOPES.join('%20')}&permissions=${PERMISSIONS.bitfield}`;
 
 export const VERSION = await getPackageVersion();
-export const COMMIT = await getGitCommit();
-
 /**
- * Fetches the package version from `package.json`.
  * @returns {Promise<?string>}
  */
 async function getPackageVersion() {
@@ -47,8 +45,9 @@ async function getPackageVersion() {
     return null;
 }
 
+export const COMMIT = await getGitCommit();
+
 /**
- * Fetches the latest Git commit hash for version tracking.
  * @returns {Promise<?string>}
  */
 async function getGitCommit() {
@@ -72,7 +71,7 @@ export default class InfoCommand extends Command {
     async execute(interaction) {
         const buttons = [
             { name: 'Privacy', url: PRIVACY_POLICY, emoji: 'privacy' },
-            { name: 'Discord', url: DISCORD_INVITE_LINK, emoji: 'discord' }
+            { name: 'Discord', url: DISCORD_INVITE_LINK, emoji: 'discord' },
         ];
 
         await interaction.reply({
@@ -80,32 +79,29 @@ export default class InfoCommand extends Command {
             embeds: [new KeyValueEmbed()
                 .setAuthor({name: 'Status Moderation Bot', iconURL: bot.client.user.displayAvatarURL()})
                 .addLine(
-                    'Status Moderation is a robust and feature-rich moderation bot created by bossmannn for the Status Discord server. It integrates the latest Discord features like slash-commands, context-menus, timeouts, buttons, select-menus, and modals to offer comprehensive moderation capabilities. These include:' 
-                )
-                .addLine(
-                    '- **Automatic Filters**: Filters for bad words, phishing URLs, and other content through regex matching and custom detection patterns.'
-                )
-                .addLine(
-                    '- **Moderation Tools**: Temporary bans, a flexible strike system, message logging, automated responses, and a variety of filters to maintain a safe community.'
+                    'Status Moderation is a powerful moderation bot developed by bossmannn specifically for the Status Discord server. ' +
+                    'Utilizing the latest in Discord API features such as slash-commands, context-menus, timeouts, buttons, select-menus, and modals, ' +
+                    'it offers extensive moderation capabilities. These include automatic word filtering, phishing URL detection, temporary bans, ' +
+                    'a configurable strike system, message logging, and response automation with regex support.'
                 )
                 .newLine()
                 .addLine(
-                    'For assistance or suggestions, you can reach out to bossmannn on Discord.'
+                    'This bot is supported on a robust infrastructure featuring:\n' +
+                    '- **Processor**: 8-Core Intel Xeon\n' +
+                    '- **Memory**: 16GB ECC RAM\n' +
+                    '- **Storage**: 500GB NVMe SSD\n' +
+                    '- **Operating System**: Ubuntu Server 20.04 LTS\n' +
+                    'Additionally, the system is configured for automatic scaling and optimized for high availability, ensuring reliable performance for active and large servers.'
+                )
+                .newLine()
+                .addLine(
+                    `For suggestions or assistance, reach out to bossmannn on Discord, or join the [Discord server](${DISCORD_INVITE_LINK}).`
                 )
                 .newLine()
                 .addPairIf(VERSION, 'Version', VERSION)
                 .addPairIf(COMMIT, 'Commit', hyperlink(COMMIT, `${GITHUB_REPOSITORY}/tree/${COMMIT}`, 'View on GitHub'))
                 .addPair('Uptime', formatTime(process.uptime()))
                 .addPair('Ping', bot.client.ws.ping + 'ms')
-                .addLine('### Infrastructure & Specifications')
-                .addLine(
-                    'This bot is hosted on a high-performance server setup with:\n' +
-                    '- **Processor**: 8-Core Intel Xeon processor\n' +
-                    '- **Memory**: 16GB ECC RAM\n' +
-                    '- **Storage**: 500GB NVMe SSD\n' +
-                    '- **Operating System**: Ubuntu Server 20.04 LTS\n' +
-                    'With automatic scaling based on server load, Status Moderation is optimized for high-availability and fast response times, ensuring smooth moderation for large and active servers.'
-                )
             ],
             components: [
                 /** @type {ActionRowBuilder} */
