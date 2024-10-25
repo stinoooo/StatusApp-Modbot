@@ -14,7 +14,7 @@ import {promisify} from 'util';
 import {componentEmojiIfExists} from '../../util/format.js';
 import BetterButtonBuilder from '../../embeds/BetterButtonBuilder.js';
 
-export const GITHUB_REPOSITORY = 'https://github.com/aternosorg/modbot';
+export const GITHUB_REPOSITORY = 'https://github.com/stinoooo/StatusApp-Modbot';
 export const DISCORD_INVITE_LINK = 'https://discord.gg/statusgame';
 export const PRIVACY_POLICY = 'https://peach-darb-72.tiiny.site';
 
