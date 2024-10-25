@@ -12,7 +12,7 @@ import ArticleCommand from './external/ArticleCommand.js';
 import AvatarCommand from './user/AvatarCommand.js';
 import ExportCommand from './bot/ExportCommand.js';
 import ImportCommand from './bot/ImportCommand.js';
-import InfoCommand, {GITHUB_REPOSITORY} from './bot/InfoCommand.js';
+import InfoCommand from './bot/InfoCommand.js';
 import UserInfoCommand from './user/UserInfoCommand.js';
 import BanCommand from './user/BanCommand.js';
 import UnbanCommand from './user/UnbanCommand.js';
