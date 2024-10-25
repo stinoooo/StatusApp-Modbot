@@ -15,7 +15,7 @@ export default class HelpCenterCommand extends SubCommand {
     buildOptions(builder) {
         builder.addStringOption(option => option
             .setName('domain')
-            .setDescription('Zendesk help center domain (e.g. \'aternos.zendesk.com\' or \'support.aternos.org\').')
+            .setDescription('Zendesk help center domain (e.g. \'status.zendesk.com\' or \'support.status.org\').')
             .setRequired(false)
         );
         return super.buildOptions(builder);
